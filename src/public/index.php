@@ -87,10 +87,12 @@
         }
     );
 
+
+
     //cache
     $serializerFactory = new SerializerFactory();
     $adapterFactory    = new AdapterFactory($serializerFactory);
-    $options = [];
+    $options = ['lifetime' => 7200,];
     $adapter = $adapterFactory->newInstance('apcu', $options);
     // $adapter = new Memory($serializerFactory, $options);
 
