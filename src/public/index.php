@@ -12,6 +12,7 @@
     use Phalcon\Cache;
     use Phalcon\Storage\SerializerFactory;
     use Phalcon\Cache\Adapter\Memory;
+    use Phalcon\Cache\AdapterFactory;
     //
 
     define('BASE_PATH', dirname(__DIR__));
@@ -87,12 +88,11 @@
     );
 
     //cache
-
     $serializerFactory = new SerializerFactory();
-
+    $adapterFactory    = new AdapterFactory($serializerFactory);
     $options = [];
-
-    $adapter = new Memory($serializerFactory, $options);
+    $adapter = $adapterFactory->newInstance('apcu', $options);
+    // $adapter = new Memory($serializerFactory, $options);
 
     $cache = new Cache($adapter);
     $container->set('cache', $cache);
