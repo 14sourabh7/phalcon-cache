@@ -90,7 +90,7 @@
 
     $serializerFactory = new SerializerFactory();
 
-    $options = [];
+    $options = ['lifetime' => 7200];
 
     $adapter = new Memory($serializerFactory, $options);
 
