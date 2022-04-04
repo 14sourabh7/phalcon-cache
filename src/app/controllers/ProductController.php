@@ -8,17 +8,8 @@ class ProductController extends Controller
     {
 
         //caching the locale
-        if ($this->request->get('locale')) {
-            if (!$this->cache->has($this->request->get('locale'))) {
-                $this->cache->clear();
-                $this->cache->set($this->request->get('locale'), $this->locale);
-            }
-            $locale = $this->cache->get($this->request->get('locale'));
-            $this->view->locale = $locale;
-        } else {
-            $this->view->locale = $this->locale;
-            $this->locale;
-        }
+        $this->view->locale = $this->getlocale;
+
 
         $product = new Products();
         $this->view->products = $product->getProducts();;
@@ -32,17 +23,9 @@ class ProductController extends Controller
 
 
         //caching the locale
-        if ($this->request->get('locale')) {
-            if (!$this->cache->has($this->request->get('locale'))) {
-                $this->cache->clear();
-                $this->cache->set($this->request->get('locale'), $this->locale);
-            }
-            $locale = $this->cache->get($this->request->get('locale'));
-            $this->view->locale = $locale;
-        } else {
-            $this->view->locale = $this->locale;
-            $this->locale;
-        }
+
+        $this->view->locale = $this->getlocale;
+
 
         // $eventManager->fire('application:beforeHandleRequest', $this);
         $escaper = new \App\Components\MyEscaper();

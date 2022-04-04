@@ -98,6 +98,7 @@
     $container->set('cache', $cache);
 
     $container->set('locale', (new \App\Components\Locale())->getTranslator());
+    $container->set('getlocale', (new \App\Components\Locale())->getLocale());
     try {
         // Handle the request
         $response = $application->handle(

@@ -42,4 +42,20 @@ class Locale extends Injectable
             ]
         );
     }
+    public function getLocale()
+    {
+        $selectedLanguage = $this->request->get('locale');
+        $language = $selectedLanguage ? $selectedLanguage : $this->request->getBestLanguage();
+        if ($language) {
+            if (!$this->cache->has($language)) {
+                $this->cache->clear();
+                $this->cache->set($language, $this->locale);
+            }
+            $locale = $this->cache->get($language);
+            return $locale;
+        } else {
+            return $this->locale;
+            $this->locale;
+        }
+    }
 }
