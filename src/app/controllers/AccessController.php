@@ -11,17 +11,7 @@ class AccessController extends Controller
     public function buildaclAction()
     {
         //caching the locale
-        if ($this->request->get('locale')) {
-            if (!$this->cache->has($this->request->get('locale'))) {
-                $this->cache->clear();
-                $this->cache->set($this->request->get('locale'), $this->locale);
-            }
-            $locale = $this->cache->get($this->request->get('locale'));
-            $this->view->locale = $locale;
-        } else {
-            $this->view->locale = $this->locale;
-            $this->locale;
-        }
+        $this->view->locale = $this->getlocale;
 
         $permissions = new Permissions();
         $permission = $permissions->getPermissions();
@@ -130,17 +120,7 @@ class AccessController extends Controller
     public function addcontrollerAction()
     {
         //caching the locale
-        if ($this->request->get('locale')) {
-            if (!$this->cache->has($this->request->get('locale'))) {
-                $this->cache->clear();
-                $this->cache->set($this->request->get('locale'), $this->locale);
-            }
-            $locale = $this->cache->get($this->request->get('locale'));
-            $this->view->locale = $locale;
-        } else {
-            $this->view->locale = $this->locale;
-            $this->locale;
-        }
+        $this->view->locale = $this->getlocale;
 
         $Controller = new Controllers();
         $this->view->controllers = $Controller->getControllers();
