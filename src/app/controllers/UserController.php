@@ -15,18 +15,7 @@ class UserController extends Controller
         $escaper = new \App\Components\MyEscaper();
 
         //caching the locale
-        if ($this->request->get('locale')) {
-            if (!$this->cache->has($this->request->get('locale'))) {
-                $this->cache->clear();
-                $this->cache->set($this->request->get('locale'), $this->locale);
-            }
-            $locale = $this->cache->get($this->request->get('locale'));
-            $this->view->locale = $locale;
-        } else {
-            $this->view->locale = $this->locale;
-            $this->locale;
-        }
-
+        $this->view->locale = $this->getlocale;
         $this->view->message = '';
         $locale = $this->request->get()['locale'];
         $check = $this->request->isPost();
@@ -74,17 +63,7 @@ class UserController extends Controller
         $roles = Roles::find();
 
         //caching the locale
-        if ($this->request->get('locale')) {
-            if (!$this->cache->has($this->request->get('locale'))) {
-                $this->cache->clear();
-                $this->cache->set($this->request->get('locale'), $this->locale);
-            }
-            $locale = $this->cache->get($this->request->get('locale'));
-            $this->view->locale = $locale;
-        } else {
-            $this->view->locale = $this->locale;
-            $this->locale;
-        }
+        $this->view->locale = $this->getlocale;
 
 
 
